@@ -1,16 +1,28 @@
 // has to load in "load" event because L isn't available
 
 window.addEventListener("load", () => {
-    var map = L.map("map").setView([14.187671, 121.125084], 13);
+    var map = L.map("map").setView([14.198735, 121.148322], 13);
+
+    var swBound = L.latLng(14.1862210, 121.1400188);
+    var neBound = L.latLng(14.2084023, 121.1611839);
+    var cityBounds = L.latLngBounds(swBound, neBound);
 
     L.tileLayer(
         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         {
             attribution: "&copy; OpenStreetMap contributors",
             maxNativeZoom: 19,
-            maxZoom: 25
+            maxZoom: 25,
         },
     ).addTo(map);
+
+    map.setMinZoom(15);
+    map.setMaxZoom(25);
+
+    map.setMaxBounds(cityBounds);
+    // map.on('drag', function() {
+    //     map.panInsideBounds(cityBounds, { animate: false });
+    // });
 
     function loadAccessiblePlaces() {
         var bounds = map.getBounds();
