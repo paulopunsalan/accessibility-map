@@ -3,8 +3,9 @@
 window.addEventListener("load", () => {
     var map = L.map("map").setView([14.198735, 121.148322], 13);
 
-    var swBound = L.latLng(14.1862210, 121.1400188);
-    var neBound = L.latLng(14.2084023, 121.1611839);
+    var padding = 0.05;
+    var swBound = L.latLng(14.1862210 - padding, 121.1400188 - padding);
+    var neBound = L.latLng(14.2084023 + padding, 121.1611839 + padding);
     var cityBounds = L.latLngBounds(swBound, neBound);
 
     L.tileLayer(
